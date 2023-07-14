@@ -2,7 +2,13 @@ This dataset was obtained from the OpenfMRI project (http://www.openfmri.org).
 Accession #: ds003
 Description: Rhyme judgment
 
+This is a very trimmed dataset for bids2nda demo on how to use DataLad
+efficiently  to accomplish the mission of trimming dataset for use with bids2nda tool.
+`code/nda-stuff/shell-history` file contains an unedited  shell history listing
+all commands (including errorneous) which were done for this repo until it got shared etc.
+
 Release history:
+07/14/2023: modified for bids2nda demo by @yarikoptic
 10/06/2011: initial release
 3/21/2013: Updated release with QA information
 2/18/2016: Updated orientation information in nifti headers for improved left-right determination
