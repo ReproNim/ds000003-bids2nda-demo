@@ -1,0 +1,4 @@
+[submodule "code/bids2nda"]
+	path = code/bids2nda
+	url = https://github.com/bids-standard/bids2nda
+	datalad-url = https://github.com/bids-standard/bids2nda
