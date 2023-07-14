@@ -1,0 +1,176 @@
+datalad clone ///openneuro/ds000003
+cd ds000003
+git checkout -b nda
+ls sub-01
+mkdir code
+vim code/prep4nda.sh
+git add code/prep4nda.sh
+git commit -m 'add my precious script to remove stuff to not be going to NDA' code/prep4nda.sh
+ls -l code/prep4nda.sh
+code/prep4nda.sh
+vim code/prep4nda.sh
+git commit --amend code/prep4nda.sh
+git status
+git reset --hard
+code/prep4nda.sh
+git status
+ls
+ls derivatives
+vim code/prep4nda.sh
+git commit --amend code/prep4nda.sh
+git reset --hard
+git commit --amend code/prep4nda.sh
+code/prep4nda.sh
+ls
+ls sub-0*
+ls sub-0*/anat
+git reset --hard
+datalad run -m "Trim dataset to only stuff I want to upload to NDA" code/prep4nda.sh
+ls
+git show
+ls
+git co -
+ls
+git alias co
+git config alias.co
+git checkout -
+ls
+git checkout -
+ls
+git checkout -
+datalad get sub-0
+datalad get sub-0*
+datalad clone -d . --source https://github.com/bids-standard/bids2nda code/bids2nda
+datalad clone -d . https://github.com/bids-standard/bids2nda code/bids2nda
+datalad subdatasets
+ls -l code/bids2nda
+datalad drop code/bids2nda
+ls -l code/bids2nda
+datalad uninstall code/bids2nda
+ls -l code/bids2nda
+datalad install code/bids2nda
+py=3; d=venv; python$py -m venv $d && source $d/bin/activate && pip install -e code/bids2nda
+bids2nda
+git status
+echo venv >> .git/info/exclude
+git status
+ls
+bids2nda
+vim participants.tsv
+mkdir code/nda-stuff
+vim code/nda-stuff/guid-mapping.txt
+vim code/bids2nda/README.md
+fg
+vim code/nda-stuff/guid-mapping.txt
+vim code/nda-stuff/.gitattributes
+git add code/nda-stuff/.gitattributes
+ls -ld code/nda-stuff/.gitattributes
+git annex add code/nda-stuff/guid-mapping.txt
+ls -l code/nda-stuff/guid-mapping.txt
+bids2nda
+echo bids2nda . code/nda-stuff/guid-mapping.txt code/nda-stuff
+git status
+git commit -m 'Our NDA GUID mapping file + instructions to not commit to git in that folder'
+bids2nda . code/nda-stuff/guid-mapping.txt code/nda-stuff
+cd ~/datalad/dbic
+d+
+ls
+datalad install .
+ls
+cd QA/
+datalad install .
+ls
+cd sub-qa
+cd ses-20180910/
+ls
+cd anat
+ls
+cd ..
+ls
+echo $PWD/sub-qa_ses-20180910_scans.tsv
+cd -6
+cd sub-01
+cp /home/yoh/datalad/dbic/QA/sub-qa/ses-20180910/sub-qa_ses-20180910_scans.tsv sub-01_scans.tsv
+vim sub-01_scans.tsv
+for f in anat/*nii.gz; do echo -e "$f\t2018-09-10T12:22:18" >> sub-01_scans.tsv; done
+ls -l
+cp sub-01_scans.tsv ../sub-02
+cd ../sub-02
+mv sub-01_scans.tsv sub-02_scans.tsv
+vim sub-02_scans.tsv
+for f in anat/*nii.gz; do echo -e "$f\t2018-09-10T12:22:18" >> sub-02_scans.tsv; done
+vim sub-02_scans.tsv
+cd -
+vim sub-01_scans.tsv
+cd ..
+git status
+datalad save -m "Generate fake scans files for demonstration purposes"
+bids2nda . code/nda-stuff/guid-mapping.txt code/nda-stuff
+vim /mnt/btrfs/scrap/tmp/ds000003/code/bids2nda/bids2nda/main.py
+find sub-0*
+ls
+tree sub-0*
+vim /mnt/btrfs/scrap/tmp/ds000003/code/bids2nda/bids2nda/main.py
+fg
+bids2nda . code/nda-stuff/guid-mapping.txt code/nda-stuff
+cat code/nda-stuff/image03.txt
+cd -
+cd ../code/nda-stuff
+git diff
+cd ../bids2nda
+git checkout -b add-inplaneT2
+git diff
+git commit -m 'Add mapping of inplaneT2 to MR structural (T2)' -a
+ghsendpr origin
+cd ../../
+git status
+git commit -m 'We need to use patched (for inlineT2 support) bids2nda' code/bids2nda
+rm code/nda-stuff/image03.txt
+datalad run -m "Produce image03.txt for submission to NDA" --input sub-* --input code/nda-stuff/guid-mapping.txt --output code/nda-stuff bids2nda . code/nda-stuff/guid-mapping.txt code/nda-stuff
+datalad run -m "Produce image03.txt for submission to NDA" --input 'sub-*' --input code/nda-stuff/guid-mapping.txt --output code/nda-stuff bids2nda . code/nda-stuff/guid-mapping.txt code/nda-stuff
+top
+ls -l code/nda-stuff
+git log
+cd ../
+datalad clone ds000003 ds000003-redo
+cd ds000003-redo
+git show
+datalad rerun
+cd -
+cd ds000003
+vim code/prep4nda.sh
+git diff
+git commit -m 'now we want to get sub-03  into nda' -a
+git checkout master
+ls
+tar -czvf sub-03.tgz sub-03
+git checkout -
+tar -xzvf sub-03.tgz
+rm sub-03.tgz
+datalad save -m "Added sub-03 from master via a tarball"
+git log
+datalad rerun 98881137c6d60c8937eb3d82920b5d0aad349e13
+git status
+git show --stat
+cp sub-02/sub-02_scans.tsv sub-03/sub-3_scans.tsv
+vim sub-03/sub-3_scans.tsv
+git annex unlock code/nda-stuff/guid-mapping.txt
+vim code/nda-stuff/guid-mapping.txt
+git status
+datalad save -m "created fake scans file for sub03 and added into guid mapping"
+git log
+datalad rerun 8b58f1ffbb1cb99fb434f1c765ddd0d71ab3725b
+ls sub-03
+datalad save -m "fix scans file" git mv sub-3_scans.tsv sub-03_scans.tsv
+git status
+ls sub-03_scans.tsv
+cd sub-03
+datalad save -m "fix scans file" git mv sub-3_scans.tsv sub-03_scans.tsv
+ls
+datalad save -m "fix scans file" mv sub-3_scans.tsv sub-03_scans.tsv
+ls
+datalad run -m "fix scans file" mv sub-3_scans.tsv sub-03_scans.tsv
+ls
+cd ..
+datalad rerun 8b58f1ffbb1cb99fb434f1c765ddd0d71ab3725b
+cat code/nda-stuff/image03.txt
